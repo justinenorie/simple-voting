@@ -1,13 +1,9 @@
-import express from 'express';
+import express from "express";
+import { registerUser, loginUser } from "../controller/authController.js";
+
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  const users = [
-    { id: 1, name: 'Alice', email: 'alice@example.com' },
-    { id: 2, name: 'Bob', email: 'bob@example.com' },
-    { id: 3, name: 'BobMarley', email: 'marley@example.com' },
-  ];
-  res.json(users)
-});
+router.post("/register", registerUser);
+router.post("/login", loginUser);
 
 export default router;
