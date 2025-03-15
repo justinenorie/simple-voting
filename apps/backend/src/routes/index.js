@@ -1,12 +1,10 @@
 import express from "express";
 import userRoutes from "./users.js";
-import refreshToken from "./refreshToken.js";
-import auth from "./auth.js";
+import authToken from "./authToken.js";
 
 const router = express.Router();
 
 router.use("/users", userRoutes);
-router.use("/refresh", refreshToken);
-router.use("/verify", auth);
+router.use("/token", authToken);
 
 export default router;

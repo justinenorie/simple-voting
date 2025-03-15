@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
           return;
         }
     
-        const response = await axiosInstance.get("/api/verify/verifyToken", {
+        const response = await axiosInstance.get("/api/token/verifyToken", {
           headers: { Authorization: `Bearer ${token}` }, // Send token in headers
         });
     
