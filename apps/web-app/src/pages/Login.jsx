@@ -11,12 +11,13 @@ const LoginPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Post the data using REST APIs
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axiosInstance.post("/api/users/login", formData);
       localStorage.setItem("token", response.data.token); // Store token
-      navigate("/"); // Redirect to dashboard (or any protected route)
+      navigate("/home"); // Redirect to dashboard (or any protected route)
     } catch (err) {
       setError(err.response?.data?.error || "Invalid email or password");
     }
