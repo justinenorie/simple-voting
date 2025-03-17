@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axiosInstance from "../api/axiosInstance";
+import axiosInstance from "@/api/axiosInstance";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       await axiosInstance.post("/api/users/register", formData);
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.error || "Registration failed");
     }
@@ -69,7 +69,7 @@ const RegisterPage = () => {
         </form>
         <p className="mt-4 text-center text-sm text-gray-400">
           Already have an account?
-          <Link to="/login" className="ml-1 text-blue-400">
+          <Link to="/" className="ml-1 text-blue-400">
             Login
           </Link>
         </p>

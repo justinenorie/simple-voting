@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/Home";
-import LoginPage from "./pages/Login";
-import RegisterPage from "./pages/Register";
-import ProtectedRoute from "./routes/ProtectedPage";
-import PublicRoute from "./routes/PublicRoute";
+import HomePage from "@/pages/Home";
+import LoginPage from "@/pages/Login";
+import RegisterPage from "@/pages/Register";
+import ProtectedRoute from "@/routes/ProtectedPage";
+import PublicRoute from "@/routes/PublicRoute";
 
 const App = () => {
   return (

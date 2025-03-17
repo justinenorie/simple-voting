@@ -1,6 +1,6 @@
 import express from "express";
-import userRoutes from "./users.js";
-import authToken from "./authToken.js";
+import userRoutes from "./api/users.js";
+import authToken from "./api/authToken.js";
 
 const router = express.Router();
 
