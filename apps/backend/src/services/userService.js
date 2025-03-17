@@ -1,5 +1,4 @@
-// Handles queries for user
-// such as Add, Delete, 
+// Handles CRUD queries 
 import prisma from "../config/database.js";
 import bcrypt from "bcryptjs";
 
