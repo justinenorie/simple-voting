@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+@theme {
+  --font-title: Montserrat, sans-serif;
+  --font-body: Poppins, sans-serif;
+  --color-background-alt: #0a1622;
+  --color-background: #1a1a1a;
+  --color-txt-light: #e6e6e6;
+  --color-txt-dark: #1a1a1a;
+  --color-primary: #f57b7a;
+  --color-secondary: #82a7a6;
+  --color-accent: #2ec4b6;
+  --color-cards: #1e2a38;
+}
+
+section {
+  @apply w-full px-4 py-5 md:px-12 md:py-10 lg:px-30 xl:px-50;
+}
+
+.gradient-bg {
+  background: linear-gradient(
+    to bottom right,
+    hsl(224, 71%, 4%),
+    hsl(222, 47%, 11%)
+  );
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
