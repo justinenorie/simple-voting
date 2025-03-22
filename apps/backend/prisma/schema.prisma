@@ -13,11 +13,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Models
 model User {
   id        String   @id @default(uuid())
-  username  String   @unique
+  studentID String?  @unique
+  firstName String?
+  lastName  String?
   email     String   @unique
   password  String
+  role      Role     @default(student)
   createdAt DateTime @default(now())
+  Vote      Vote[]
+}
+
+model Vote {
+  id          String    @id @default(uuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String // Foreign key to User ID
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  candidateId String
+  createdAt   DateTime  @default(now())
+
+  @@unique([userId, categoryId]) // Prevents duplicate votes per category
+}
+
+model Category {
+  id         String      @id @default(uuid())
+  name       String      @unique
+  candidates Candidate[]
+  votes      Vote[]
+  createdAt  DateTime    @default(now())
+}
+
+model Candidate {
+  id         String   @id @default(uuid())
+  name       String
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  votes      Vote[]
+  createdAt  DateTime @default(now())
+}
+
+enum Role {
+  student
+  admin
 }

@@ -1,18 +1,23 @@
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/jwtHandler.js";
-import { findUserByEmail, createUser } from "../services/userService.js";
-import { verifyAccessToken } from "../middleware/authMiddleware.js";
+import { findUserByEmail, createUser, findUserByStudentID } from "../services/userService.js";
 
 // Registration Method
 export const registerUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const existingUser = await findUserByEmail(email);
-    if (existingUser) {
+    const { studentID, first_name, last_name, email, password } = req.body;
+    const existingEmailUser = await findUserByEmail(email);
+    const existingStudentIDUser = await findUserByStudentID(studentID);
+
+    if (existingEmailUser) {
       return res.status(400).json({ error: "Email already in use" });
     }
 
-    const user = await createUser(username, email, password);
+    if (existingStudentIDUser) {
+      return res.status(400).json({ error: "Student ID already in use" });
+    }
+
+    const user = await createUser(studentID, first_name, last_name, email, password);
     res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
     res.status(500).json({ error: error.message });
